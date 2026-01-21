@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Funcionário - P.U.P.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>P.U.P.</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="cardapio.html" class="nav-link">Cardápio</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-tie"></i> Área do Funcionário</h2>
+                    <a href="index.html" class="btn btn-back">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab('mesas')">Gestão de Mesas</button>
+                    <button class="tab-btn" onclick="showTab('pedidos')">Pedidos</button>
+                    <button class="tab-btn" onclick="showTab('gerar-codigo')">Gerar Código</button>
+                </div>
+
+                <div id="mesas" class="tab-content active">
+                    <div id="mesas-grid" class="mesas-grid"></div>
+                </div>
+
+                <div id="pedidos" class="tab-content">
+                    <div class="pedidos-container">
+                        <div class="pedidos-filter">
+                            <select id="status-filter" onchange="filterPedidos()">
+                                <option value="todos">Todos os Status</option>
+                                <option value="pendente">Pendente</option>
+                                <option value="preparando">Preparando</option>
+                                <option value="entregue">Entregue</option>
+                            </select>
+                        </div>
+                        <div id="pedidos-list" class="pedidos-list"></div>
+                    </div>
+                </div>
+
+                <div id="gerar-codigo" class="tab-content">
+                    <div class="codigo-form">
+                        <h3>Gerar Código para Mesa</h3>
+                        <div class="form-group">
+                            <label>Mesa:</label>
+                            <select id="mesa-select"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tempo (minutos):</label>
+                            <input type="number" id="tempo-input" placeholder="60" min="1" max="480">
+                        </div>
+                        <div class="form-group">
+                            <label>Cliente (opcional):</label>
+                            <input type="text" id="cliente-input" placeholder="Nome do cliente">
+                        </div>
+                        <button class="btn btn-primary" onclick="gerarCodigo()">
+                            <i class="fas fa-key"></i> Gerar Código
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/common.js"></script>
+    <script src="js/funcionario.js"></script>
+</body>
+</html>
