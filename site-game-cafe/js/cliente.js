@@ -1,3 +1,58 @@
+// Função de debug para verificar dados
+function debugJogos() {
+    console.log('=== DEBUG JOGOS ===');
+    console.log('Array jogos:', jogos);
+    console.log('Elemento jogos-grid:', document.getElementById('jogos-grid'));
+    console.log('Tab jogos:', document.getElementById('jogos'));
+    console.log('==================');
+}
+
+// Carregar jogos
+function loadJogos() {
+    const jogosGrid = document.getElementById('jogos-grid');
+    if (!jogosGrid) {
+        console.error('Elemento jogos-grid não encontrado');
+        return;
+    }
+    
+    jogosGrid.innerHTML = '';
+    
+    if (!jogos || jogos.length === 0) {
+        console.error('Array jogos está vazio ou não definido');
+        jogosGrid.innerHTML = '<p>Nenhum jogo disponível no momento.</p>';
+        return;
+    }
+    
+    console.log('Carregando jogos:', jogos);
+    
+    jogos.forEach(jogo => {
+        const jogoCard = document.createElement('div');
+        jogoCard.className = 'menu-item';
+        jogoCard.innerHTML = `
+            <img src="${jogo.imagem}" alt="${jogo.nome}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;" onerror="this.style.display='none'">
+            <h4>🧠 ${jogo.nome}</h4>
+            <p>${jogo.descricao}</p>
+            <button class="btn btn-primary" onclick="iniciarQuiz('${jogo.nome}')" style="margin-top: 10px;">
+                <i class="fas fa-play"></i> Iniciar Quiz
+            </button>
+        `;
+        jogosGrid.appendChild(jogoCard);
+    });
+}
+
+function iniciarQuiz(nomeQuiz) {
+    if (nomeQuiz === 'Quiz Pokémon') {
+        window.location.href = 'quiz-pokemon.html';
+    } else {
+        showMessage(`${nomeQuiz} em desenvolvimento! Em breve disponível.`, 'warning');
+    }
+}
+
+// Chamar garçom
+function chamarGarcom() {
+    showMessage('Garçom chamado! Aguarde, ele estará com você em breve.', 'success');
+}
+
 // Variáveis específicas do cliente
 let mesaAtual = { id: 'Cliente', totalGasto: 0 }; // Mesa virtual para cliente
 let carrinho = [];
@@ -12,11 +67,18 @@ function iniciarExperiencia() {
     document.getElementById('main-tabs').classList.remove('hidden');
     
     // Mostrar cardápio por padrão
+    document.getElementById('cardapio').classList.remove('hidden');
     showTab('cardapio');
     
     showMessage('Bem-vindo ao P.U.P.! Explore nosso cardápio e aproveite!', 'success');
     updateCarrinho();
     loadPremiosCliente();
+    
+    // Garantir que os jogos sejam carregados
+    setTimeout(() => {
+        console.log('Carregando jogos após iniciar experiência...');
+        loadJogos();
+    }, 500);
 }
 
 // Carregar menu e promoções juntos
@@ -290,10 +352,14 @@ function enviarFeedback() {
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado, aguardando dados...');
     // Aguarda um pouco mais para garantir que os dados do common.js sejam carregados
     setTimeout(() => {
+        console.log('Inicializando cliente...');
+        debugJogos();
         loadMenu();
+        loadJogos();
         loadPremiosCliente();
         setRating(5);
-    }, 200);
+    }, 300);
 });

@@ -16,7 +16,7 @@
             </div>
             <nav class="nav">
                 <a href="index.html" class="nav-link">Início</a>
-                <a href="cardapio.html" class="nav-link">Cardápio</a>
+                <a href="#" class="nav-link" onclick="chamarGarcom()">Chamar Garçom</a>
                 <a href="sobre.html" class="nav-link">Sobre</a>
                 <a href="contato.html" class="nav-link">Contato</a>
             </nav>
@@ -49,6 +49,7 @@
 
                 <div class="tabs hidden" id="main-tabs">
                     <button class="tab-btn active" onclick="showTab('cardapio')">Cardápio</button>
+                    <button class="tab-btn" onclick="showTab('jogos')">Jogos</button>
                     <button class="tab-btn" onclick="showTab('premios')">Prêmios</button>
                     <button class="tab-btn" onclick="showTab('carrinho')">Carrinho <span id="cart-count">0</span></button>
                     <button class="tab-btn" onclick="showTab('avaliar')">Avaliar</button>
@@ -76,6 +77,14 @@
                     <div class="menu-section">
                         <h3 class="section-title">🍕 Cardápio</h3>
                         <div id="menu-grid" class="menu-grid"></div>
+                    </div>
+                </div>
+
+                <div id="jogos" class="tab-content">
+                    <div class="jogos-container">
+                        <h3 class="section-title">🧠 Quiz de Anime</h3>
+                        <p style="text-align: center; margin-bottom: 2rem; color: #666;">Teste seus conhecimentos sobre seus animes favoritos!</p>
+                        <div id="jogos-grid" class="menu-grid"></div>
                     </div>
                 </div>
 

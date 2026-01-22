@@ -10,6 +10,7 @@ let premios = [];
 let vendas = [];
 let custos = [];
 let feedbacks = [];
+let quizPokemon = [];
 
 // Inicialização dos dados
 function initializeData() {
@@ -57,10 +58,38 @@ function initializeData() {
 
     // Jogos
     jogos = [
-        {id: 1, nome: "FIFA 24", categoria: "Esportes", console: "PS5", jogadas: 150},
-        {id: 2, nome: "Call of Duty", categoria: "Ação", console: "Xbox Series X", jogadas: 200},
-        {id: 3, nome: "Mario Kart", categoria: "Corrida", console: "Nintendo Switch", jogadas: 120},
-        {id: 4, nome: "League of Legends", categoria: "MOBA", console: "PC Gamer", jogadas: 300}
+        {id: 1, nome: "Quiz Pokémon", categoria: "Quiz", descricao: "Teste seus conhecimentos sobre Pokémon", imagem: "pokemon.avif"},
+        {id: 2, nome: "Quiz Cavaleiros do Zodíaco", categoria: "Quiz", descricao: "Desafie-se com perguntas sobre os Cavaleiros de Atena", imagem: "cavaleiros_do_zodiaco.avif"},
+        {id: 3, nome: "Quiz Dragon Ball", categoria: "Quiz", descricao: "Prove que você é um verdadeiro fã de Dragon Ball", imagem: "Dragon-Ball-Super-Goku.jpg"}
+    ];
+
+    // Perguntas do Quiz Pokémon
+    quizPokemon = [
+        {
+            pergunta: "Qual é o Pokémon número 1 na Pokédex Nacional?",
+            opcoes: ["Pikachu", "Bulbasaur", "Charmander", "Squirtle"],
+            resposta: 1
+        },
+        {
+            pergunta: "Que tipo de Pokémon é super efetivo contra Pokémon do tipo Água?",
+            opcoes: ["Fogo", "Elétrico", "Grama", "Pedra"],
+            resposta: 2
+        },
+        {
+            pergunta: "Qual é a evolução do Pikachu?",
+            opcoes: ["Raichu", "Pichu", "Electrode", "Voltorb"],
+            resposta: 0
+        },
+        {
+            pergunta: "Em que cidade Ash Ketchum começou sua jornada?",
+            opcoes: ["Cerulean City", "Viridian City", "Pallet Town", "Pewter City"],
+            resposta: 2
+        },
+        {
+            pergunta: "Quantas evoluções o Eevee possui na primeira geração?",
+            opcoes: ["2", "3", "4", "5"],
+            resposta: 1
+        }
     ];
 
     // Dispositivos
@@ -90,11 +119,28 @@ function showMessage(message, type = 'success') {
 }
 
 function showTab(tabId) {
+    console.log('Mostrando tab:', tabId);
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
     
-    event.target.classList.add('active');
-    document.getElementById(tabId).classList.add('active');
+    // Encontra o botão clicado
+    const clickedBtn = event ? event.target : document.querySelector(`[onclick*="${tabId}"]`);
+    if (clickedBtn) {
+        clickedBtn.classList.add('active');
+    }
+    
+    const tabContent = document.getElementById(tabId);
+    if (tabContent) {
+        tabContent.classList.add('active');
+        
+        // Se for a aba de jogos, recarregar os jogos
+        if (tabId === 'jogos') {
+            console.log('Carregando jogos na aba...');
+            setTimeout(() => loadJogos(), 100);
+        }
+    } else {
+        console.error('Tab não encontrada:', tabId);
+    }
 }
 
 // Inicializar dados ao carregar

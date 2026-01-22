@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Pokémon - P.U.P.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>P.U.P.</h1>
+            </div>
+            <nav class="nav">
+                <a href="cliente.html" class="nav-link">Voltar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h3>🧠 Quiz Pokémon</h3>
+                        <a href="cliente.html" class="btn btn-back">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                    
+                    <div id="quiz-content">
+                        <div class="quiz-progress">
+                            Pergunta <span id="pergunta-atual">1</span> de <span id="total-perguntas">5</span>
+                        </div>
+                        <div class="quiz-question">
+                            <h4 id="pergunta-texto"></h4>
+                            <div id="opcoes-container" class="quiz-options"></div>
+                        </div>
+                        <div class="quiz-actions">
+                            <button id="btn-responder" class="btn btn-primary" onclick="responderPergunta()" disabled>
+                                Responder
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-resultado" class="quiz-result hidden">
+                        <h3>Resultado Final</h3>
+                        <p id="pontuacao-final"></p>
+                        <div style="margin-top: 2rem;">
+                            <button class="btn btn-primary" onclick="reiniciarQuiz()">
+                                Jogar Novamente
+                            </button>
+                            <a href="cliente.html" class="btn btn-secondary" style="margin-left: 1rem;">
+                                Voltar ao Menu
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/quiz-pokemon.js"></script>
+</body>
+</html>
