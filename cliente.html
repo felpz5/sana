@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Cliente - P.U.P.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>P.U.P.</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="#" class="nav-link" onclick="chamarGarcom()">Chamar Garçom</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-gamepad"></i> Área do Cliente</h2>
+                    <a href="index.html" class="btn btn-back">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                </div>
+                
+                <div id="welcome" class="welcome-screen">
+                    <div class="welcome-card">
+                        <div class="welcome-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Bem-vindo ao P.U.P.!</h3>
+                        <p>Prepare-se para uma experiência incrível de jogos e sabores!</p>
+                        <p>Explore nosso cardápio, aproveite as promoções e acumule pontos.</p>
+                        <button class="btn btn-primary btn-large" onclick="iniciarExperiencia()">
+                            <i class="fas fa-play"></i> Iniciar Experiência
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tabs hidden" id="main-tabs">
+                    <button class="tab-btn active" onclick="showTab('cardapio')">Cardápio</button>
+                    <button class="tab-btn" onclick="showTab('jogos')">Jogos</button>
+                    <button class="tab-btn" onclick="showTab('premios')">Prêmios</button>
+                    <button class="tab-btn" onclick="showTab('carrinho')">Carrinho <span id="cart-count">0</span></button>
+                    <button class="tab-btn" onclick="showTab('avaliar')">Avaliar</button>
+                </div>
+
+                <div id="cardapio" class="tab-content active hidden">
+                    <div class="menu-filters">
+                        <select id="categoria-filter" onchange="filterMenu()">
+                            <option value="todos">Todas as Categorias</option>
+                            <option value="Pizzas">Pizzas</option>
+                            <option value="Burgers">Burgers</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Acompanhamentos">Acompanhamentos</option>
+                        </select>
+                        <input type="text" id="search-input" placeholder="Buscar item..." onkeyup="filterMenu()">
+                    </div>
+                    
+                    <!-- Seção de Pacotes Promocionais -->
+                    <div class="promocoes-section">
+                        <h3 class="section-title">🎉 Pacotes Promocionais</h3>
+                        <div id="promocoes-grid" class="promocoes-grid"></div>
+                    </div>
+                    
+                    <!-- Seção do Cardápio Regular -->
+                    <div class="menu-section">
+                        <h3 class="section-title">🍕 Cardápio</h3>
+                        <div id="menu-grid" class="menu-grid"></div>
+                    </div>
+                </div>
+
+                <div id="jogos" class="tab-content">
+                    <div class="jogos-container">
+                        <h3 class="section-title">🧠 Quiz de Anime</h3>
+                        <p style="text-align: center; margin-bottom: 2rem; color: #666;">Teste seus conhecimentos sobre seus animes favoritos!</p>
+                        <div id="jogos-grid" class="menu-grid"></div>
+                    </div>
+                </div>
+
+                <div id="premios" class="tab-content">
+                    <div class="premios-container">
+                        <div class="pontos-header">
+                            <h3>🏆 Sistema de Pontos</h3>
+                            <p id="pontos-cliente">Você tem 0 pontos!</p>
+                        </div>
+                        <div class="premios-grid" id="premios-cliente-list"></div>
+                    </div>
+                </div>
+
+                <div id="carrinho" class="tab-content">
+                    <div class="cart-container">
+                        <div class="cart-items" id="cart-items">
+                            <p class="empty-cart">Carrinho vazio</p>
+                        </div>
+                        <div class="cart-total">
+                            <h3>Total: R$ <span id="cart-total">0,00</span></h3>
+                            <button class="btn btn-primary" onclick="finalizarPedido()">Finalizar Pedido</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="avaliar" class="tab-content">
+                    <div class="rating-card">
+                        <h3>Deixe seu Feedback</h3>
+                        <div class="stars">
+                            <i class="fas fa-star" onclick="setRating(1)"></i>
+                            <i class="fas fa-star" onclick="setRating(2)"></i>
+                            <i class="fas fa-star" onclick="setRating(3)"></i>
+                            <i class="fas fa-star" onclick="setRating(4)"></i>
+                            <i class="fas fa-star" onclick="setRating(5)"></i>
+                        </div>
+                        <textarea id="feedback-text" placeholder="Comentários/Sugestões..."></textarea>
+                        <button class="btn btn-primary" onclick="enviarFeedback()">Enviar Avaliação</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/cliente.js"></script>
+
+</body>
+</html>
