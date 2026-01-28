@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - P.U.P.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>P.U.P.</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="cardapio.html" class="nav-link">Cardápio</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> Painel Administrativo</h2>
+                    <a href="index.html" class="btn btn-back">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                </div>
+                
+                <div class="admin-dashboard">
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h3>Receita Total</h3>
+                            <p id="receita-total">R$ 0,00</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-users"></i>
+                            <h3>Funcionários</h3>
+                            <p id="total-funcionarios">0</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-desktop"></i>
+                            <h3>Mesas Ativas</h3>
+                            <p id="mesas-ativas">0/20</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-star"></i>
+                            <h3>Avaliação</h3>
+                            <p id="avaliacao-media">5.0/5.0</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Lucro Líquido</h3>
+                            <p id="lucro-liquido">R$ 0,00</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-gamepad"></i>
+                            <h3>Jogos Populares</h3>
+                            <p id="jogos-populares">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab(event,\'funcionarios\')">Funcionários</button>
+                    <button class="tab-btn" onclick="showTab(event,\'menu-admin\')">Cardápio</button>
+                    <button class="tab-btn" onclick="showTab(event,\'jogos-admin\')">Jogos</button>
+                    <button class="tab-btn" onclick="showTab(event,\'dispositivos\')">Dispositivos</button>
+                    <button class="tab-btn" onclick="showTab(event,\'promocoes-admin\')">Promoções</button>
+                    <button class="tab-btn" onclick="showTab(event,\'premios-admin\')">Prêmios</button>
+                    <button class="tab-btn" onclick="showTab(event,\'financeiro\')">Financeiro</button>
+                    <button class="tab-btn" onclick="showTab(event,\'relatorios\')">Relatórios</button>
+                </div>
+
+                <div id="funcionarios" class="tab-content active">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão de Funcionários</h3>
+                            <button class="btn btn-primary" onclick="adicionarFuncionario()">
+                                <i class="fas fa-plus"></i> Adicionar Funcionário
+                            </button>
+                        </div>
+                        <div class="data-table" id="funcionarios-list"></div>
+                    </div>
+                </div>
+
+                <div id="menu-admin" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão do Cardápio</h3>
+                            <button class="btn btn-primary" onclick="adicionarItemMenu()">
+                                <i class="fas fa-plus"></i> Adicionar Item
+                            </button>
+                        </div>
+                        <div class="data-table" id="menu-admin-list"></div>
+                    </div>
+                </div>
+
+                <div id="jogos-admin" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão de Jogos</h3>
+                            <button class="btn btn-primary" onclick="adicionarJogo()">
+                                <i class="fas fa-plus"></i> Adicionar Jogo
+                            </button>
+                        </div>
+                        <div class="data-table" id="jogos-list"></div>
+                    </div>
+                </div>
+
+                <div id="dispositivos" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão de Dispositivos</h3>
+                        </div>
+                        <div class="data-table" id="dispositivos-list"></div>
+                    </div>
+                </div>
+
+                <div id="promocoes-admin" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão de Promoções</h3>
+                            <button class="btn btn-primary" onclick="adicionarPromocao()">
+                                <i class="fas fa-plus"></i> Adicionar Promoção
+                            </button>
+                        </div>
+                        <div class="data-table" id="promocoes-list"></div>
+                    </div>
+                </div>
+
+                <div id="premios-admin" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão de Prêmios</h3>
+                            <button class="btn btn-primary" onclick="adicionarPremio()">
+                                <i class="fas fa-plus"></i> Adicionar Prêmio
+                            </button>
+                        </div>
+                        <div class="data-table" id="premios-list"></div>
+                    </div>
+                </div>
+
+                <div id="financeiro" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Gestão Financeira</h3>
+                        </div>
+                        <div class="financial-summary">
+                            <div class="financial-card">
+                                <h4>Total Receitas</h4>
+                                <p id="total-receitas">R$ 0,00</p>
+                            </div>
+                            <div class="financial-card">
+                                <h4>Total Custos</h4>
+                                <p id="total-custos">R$ 0,00</p>
+                            </div>
+                            <div class="financial-card">
+                                <h4>Lucro Líquido</h4>
+                                <p id="total-lucro">R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="data-table" id="transacoes-list"></div>
+                    </div>
+                </div>
+
+                <div id="relatorios" class="tab-content">
+                    <div class="admin-section">
+                        <div class="section-controls">
+                            <h3>Relatórios</h3>
+                        </div>
+                        <div class="reports-grid">
+                            <div class="report-card" onclick="gerarRelatorioFinanceiro()">
+                                <i class="fas fa-chart-bar"></i>
+                                <h4>Relatório Financeiro</h4>
+                                <p>Receitas, custos e lucros</p>
+                            </div>
+                            <div class="report-card" onclick="gerarRelatorioJogos()">
+                                <i class="fas fa-gamepad"></i>
+                                <h4>Jogos Mais Jogados</h4>
+                                <p>Ranking de popularidade</p>
+                            </div>
+                            <div class="report-card" onclick="gerarRelatorioVendas()">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h4>Itens Mais Vendidos</h4>
+                                <p>Top 10 do cardápio</p>
+                            </div>
+                            <div class="report-card" onclick="gerarRelatorioSatisfacao()">
+                                <i class="fas fa-star"></i>
+                                <h4>Satisfação do Cliente</h4>
+                                <p>Avaliações e feedbacks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal System -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Título</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Conteúdo dinâmico -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-back" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmModal()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+        <script src="js/api.js"></script>
+<script src="js/common.js"></script>
+    <script src="js/admin.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="year"></span> P.U.P. - The Power-Up Palace</p>
+        </div>
+    </footer>
+
+</body>
+</html>

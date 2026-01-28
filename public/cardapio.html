@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - P.U.P.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>P.U.P.</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="cardapio.html" class="nav-link active">Cardápio</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-utensils"></i> Nosso Cardápio</h2>
+                </div>
+                
+                <div class="menu-filters">
+                    <select id="categoria-filter" onchange="filterMenu()">
+                        <option value="todos">Todas as Categorias</option>
+                        <option value="Pizzas">Pizzas</option>
+                        <option value="Burgers">Burgers</option>
+                        <option value="Bebidas">Bebidas</option>
+                        <option value="Acompanhamentos">Acompanhamentos</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="Buscar item..." onkeyup="filterMenu()">
+                </div>
+                
+                <div id="menu-grid" class="menu-grid"></div>
+            </div>
+        </section>
+    </main>
+
+        <script src="js/api.js"></script>
+<script src="js/common.js"></script>
+    <script src="js/cardapio-page.js"></script>
+<footer class="footer">
+        <div class="container">
+            <p>© <span id="year"></span> P.U.P. - The Power-Up Palace</p>
+        </div>
+    </footer>
+
+</body>
+</html>
